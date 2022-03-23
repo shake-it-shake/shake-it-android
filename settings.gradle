@@ -16,3 +16,4 @@ rootProject.name = "shakeit"
 include ':ui'
 include ':domain'
 include ':data'
+include ':webrtc'
