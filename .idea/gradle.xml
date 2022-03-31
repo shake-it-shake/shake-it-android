@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/ui" />
-            <option value="$PROJECT_DIR$/webrtc" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
