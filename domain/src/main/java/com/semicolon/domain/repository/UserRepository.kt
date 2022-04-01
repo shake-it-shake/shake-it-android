@@ -1,6 +1,7 @@
 package com.semicolon.domain.repository
 
 import com.semicolon.domain.entity.user.ProfileEntity
+import com.semicolon.domain.param.user.FetchProfileParam
 import com.semicolon.domain.param.user.LoginParam
 import com.semicolon.domain.param.user.ProfileParam
 import com.semicolon.domain.param.user.SignUpParam
@@ -17,5 +18,5 @@ interface UserRepository {
 
     suspend fun editProfile(profileParam: ProfileParam)
 
-    suspend fun fetchProfile(): ProfileEntity
+    suspend fun fetchProfile(fetchProfileParam: FetchProfileParam): ProfileEntity
 }
