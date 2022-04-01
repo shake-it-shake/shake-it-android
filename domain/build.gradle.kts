@@ -35,4 +35,6 @@ dependencies {
     testImplementation(Dependency.Test.mockitoInline)
 
     implementation(Dependency.Coroutine.core)
+
+    implementation(Dependency.DI.inject)
 }
