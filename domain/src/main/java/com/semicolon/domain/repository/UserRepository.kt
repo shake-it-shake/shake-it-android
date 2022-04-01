@@ -19,4 +19,6 @@ interface UserRepository {
     suspend fun editProfile(profileParam: ProfileParam)
 
     suspend fun fetchProfile(fetchProfileParam: FetchProfileParam): ProfileEntity
+
+    suspend fun fetchMyProfile(): ProfileEntity
 }
