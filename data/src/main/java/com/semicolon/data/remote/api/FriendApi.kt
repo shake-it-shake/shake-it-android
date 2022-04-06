@@ -7,20 +7,20 @@ import retrofit2.http.*
 interface FriendApi {
 
     @POST("/friends")
-    fun sendFriendRequest(
+    suspend fun sendFriendRequest(
         @Body friendIdRequest: FriendIdRequest
     )
 
     @PATCH("/friends")
-    fun acceptFriendRequest(
+    suspend fun acceptFriendRequest(
         @Body friendIdRequest: FriendIdRequest
     )
 
     @GET("/friends")
-    fun fetchFriends(): FriendsResponse
+    suspend fun fetchFriends(): FriendsResponse
 
     @DELETE("/friends")
-    fun deleteFriend(
+    suspend fun deleteFriend(
         @Body friendIdRequest: FriendIdRequest
     )
 }

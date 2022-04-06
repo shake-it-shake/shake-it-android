@@ -10,12 +10,12 @@ import retrofit2.http.Query
 interface RoomApi {
 
     @POST("rooms")
-    fun createRoom(
+    suspend fun createRoom(
         @Body createRoomRequest: CreateRoomRequest
     )
 
     @GET("rooms")
-    fun fetchRooms(
+    suspend fun fetchRooms(
         @Query("page") page: Int,
         @Query("size") size: Int
     ): RoomsResponse
