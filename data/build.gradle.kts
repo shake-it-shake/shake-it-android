@@ -15,7 +15,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -35,4 +38,12 @@ dependencies {
     testImplementation(Dependency.Test.mockitoInline)
 
     implementation(Dependency.Coroutine.core)
+
+    implementation(Dependency.Network.retrofit)
+    implementation(Dependency.Network.gsonConverter)
+    implementation(Dependency.Network.okhttp)
+
+    implementation(Dependency.LocalStorage.sharedPreference)
+
+    implementation(Dependency.DI.inject)
 }
