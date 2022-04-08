@@ -1,7 +1,8 @@
 package com.semicolon.data.remote.api
 
-import com.semicolon.data.remote.request.user.AccountRequest
 import com.semicolon.data.remote.request.user.EditProfileRequest
+import com.semicolon.data.remote.request.user.LoginRequest
+import com.semicolon.data.remote.request.user.SignUpRequest
 import com.semicolon.data.remote.response.user.ProfileResponse
 import com.semicolon.data.remote.response.user.TokenResponse
 import retrofit2.http.*
@@ -10,12 +11,12 @@ interface UserApi {
 
     @POST("/users/auth")
     suspend fun login(
-        @Body accountRequest: AccountRequest
+        @Body loginRequest: LoginRequest
     ): TokenResponse
 
     @POST("/users/registry")
     suspend fun signUp(
-        @Body accountRequest: AccountRequest
+        @Body signUpRequest: SignUpRequest
     ): TokenResponse
 
     @DELETE("/users/leave")
