@@ -1,19 +1,21 @@
 package com.semicolon.data.remote.api
 
-import com.semicolon.data.remote.request.friend.FriendIdRequest
+import com.semicolon.data.remote.request.friend.AcceptFriendRequest
+import com.semicolon.data.remote.request.friend.AddFriendRequest
+import com.semicolon.data.remote.request.friend.DeleteFriendRequest
 import com.semicolon.data.remote.response.friend.FriendsResponse
 import retrofit2.http.*
 
 interface FriendApi {
 
     @POST("/friends")
-    suspend fun sendFriendRequest(
-        @Body friendIdRequest: FriendIdRequest
+    suspend fun addFriend(
+        @Body addFriendRequest: AddFriendRequest
     )
 
     @PATCH("/friends")
-    suspend fun acceptFriendRequest(
-        @Body friendIdRequest: FriendIdRequest
+    suspend fun acceptFriend(
+        @Body acceptFriendRequest: AcceptFriendRequest
     )
 
     @GET("/friends")
@@ -21,6 +23,6 @@ interface FriendApi {
 
     @DELETE("/friends")
     suspend fun deleteFriend(
-        @Body friendIdRequest: FriendIdRequest
+        @Body deleteFriendRequest: DeleteFriendRequest
     )
 }
