@@ -1,17 +1,14 @@
 package com.semicolon.domain.repository
 
-import com.semicolon.domain.entity.user.AccountEntity
-import com.semicolon.domain.entity.user.EditProfileEntity
-import com.semicolon.domain.entity.user.ProfileEntity
-import com.semicolon.domain.entity.user.UserIdEntity
+import com.semicolon.domain.entity.user.*
 
 interface UserRepository {
 
     suspend fun autoLogin()
 
-    suspend fun login(accountEntity: AccountEntity)
+    suspend fun login(loginEntity: LoginEntity)
 
-    suspend fun signUp(accountEntity: AccountEntity)
+    suspend fun signUp(signUpEntity: SignUpEntity)
 
     suspend fun removeAccount()
 

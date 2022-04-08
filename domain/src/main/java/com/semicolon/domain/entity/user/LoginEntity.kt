@@ -1,6 +1,6 @@
 package com.semicolon.domain.entity.user
 
-data class AccountEntity(
+data class LoginEntity(
     val id: String,
     val password: String
 )
