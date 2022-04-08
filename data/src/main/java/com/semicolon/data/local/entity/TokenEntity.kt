@@ -1,6 +1,6 @@
 package com.semicolon.data.local.entity
 
-import java.time.LocalDateTime
+import org.threeten.bp.LocalDateTime
 
 data class TokenEntity(
     val accessToken: String,
