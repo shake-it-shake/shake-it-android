@@ -12,7 +12,7 @@ interface AuthPreference {
 
     fun fetchRefreshToken(): String
 
-    fun setExpiredAt(expiredAt: LocalDateTime)
+    fun saveExpiredAt(expiredAt: LocalDateTime)
 
     fun fetchExpiredAt(): LocalDateTime
 
