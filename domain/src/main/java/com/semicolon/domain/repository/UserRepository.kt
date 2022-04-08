@@ -14,7 +14,7 @@ interface UserRepository {
 
     suspend fun editProfile(editProfileEntity: EditProfileEntity)
 
-    suspend fun fetchProfile(userIdEntity: UserIdEntity): ProfileEntity
+    suspend fun fetchProfile(fetchProfileEntity: FetchProfileEntity): ProfileEntity
 
     suspend fun fetchMyProfile(): ProfileEntity
 }

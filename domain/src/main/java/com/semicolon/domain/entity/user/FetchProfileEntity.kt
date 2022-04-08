@@ -1,4 +1,4 @@
 package com.semicolon.domain.entity.user
 
 @JvmInline
-value class UserIdEntity(val userId: String)
+value class FetchProfileEntity(val userId: String)
