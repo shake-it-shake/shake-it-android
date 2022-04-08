@@ -69,4 +69,8 @@ object Dependency {
         const val sharedPreference =
             "androidx.preference:preference-ktx:${Version.sharedPreference}"
     }
+
+    object Date {
+        const val threeTenAbp = "com.jakewharton.threetenabp:threetenabp:${Version.threeTenAbp}"
+    }
 }
