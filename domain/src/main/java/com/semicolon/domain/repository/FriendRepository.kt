@@ -1,15 +1,15 @@
 package com.semicolon.domain.repository
 
 import com.semicolon.domain.entity.friend.FriendsEntity
-import com.semicolon.domain.param.friend.FriendParam
+import com.semicolon.domain.entity.user.UserIdEntity
 
 interface FriendRepository {
 
-    suspend fun sendFriendRequest(friendParam: FriendParam)
+    suspend fun sendFriendRequest(userIdEntity: UserIdEntity)
 
-    suspend fun acceptFriendRequest(friendParam: FriendParam)
+    suspend fun acceptFriendRequest(userIdEntity: UserIdEntity)
 
     suspend fun fetchFriends(): FriendsEntity
 
-    suspend fun deleteFriend(friendParam: FriendParam)
+    suspend fun deleteFriend(userIdEntity: UserIdEntity)
 }
