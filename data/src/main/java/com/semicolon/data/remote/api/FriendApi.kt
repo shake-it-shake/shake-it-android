@@ -3,7 +3,6 @@ package com.semicolon.data.remote.api
 import com.semicolon.data.remote.request.friend.AcceptFriendRequest
 import com.semicolon.data.remote.request.friend.AddFriendRequest
 import com.semicolon.data.remote.request.friend.DeleteFriendRequest
-import com.semicolon.data.remote.request.friend.FriendIdRequest
 import com.semicolon.data.remote.response.friend.FriendsResponse
 import retrofit2.http.*
 
