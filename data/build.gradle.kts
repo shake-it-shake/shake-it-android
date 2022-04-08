@@ -46,4 +46,6 @@ dependencies {
     implementation(Dependency.LocalStorage.sharedPreference)
 
     implementation(Dependency.DI.inject)
+
+    implementation(Dependency.Date.threeTenAbp)
 }

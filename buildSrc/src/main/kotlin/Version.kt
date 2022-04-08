@@ -24,4 +24,5 @@ object Version {
     const val activityCompose = "1.4.0"
     const val coilCompose = "1.4.0"
     const val hiltCompose = "1.0.0"
+    const val threeTenAbp = "1.3.1"
 }
