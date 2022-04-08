@@ -7,6 +7,6 @@ import javax.inject.Inject
 class EditProfileUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) {
-    suspend fun editProfile(editProfileEntity: EditProfileEntity) =
+    suspend fun execute(editProfileEntity: EditProfileEntity) =
         userRepository.editProfile(editProfileEntity)
 }

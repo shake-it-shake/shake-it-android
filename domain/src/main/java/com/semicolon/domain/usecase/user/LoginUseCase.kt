@@ -7,6 +7,6 @@ import javax.inject.Inject
 class LoginUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) {
-    suspend fun login(loginEntity: LoginEntity) =
+    suspend fun execute(loginEntity: LoginEntity) =
         userRepository.login(loginEntity)
 }
