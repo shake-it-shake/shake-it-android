@@ -1,12 +1,12 @@
 package com.semicolon.domain.repository
 
 import com.semicolon.domain.entity.room.RoomsEntity
-import com.semicolon.domain.param.room.FetchRoomParam
-import com.semicolon.domain.param.room.RoomParam
+import com.semicolon.domain.entity.room.RoomPageEntity
+import com.semicolon.domain.entity.room.CreateRoomEntity
 
 interface RoomRepository {
 
-    suspend fun createRoom(roomParam: RoomParam)
+    suspend fun createRoom(createRoomEntity: CreateRoomEntity)
 
-    suspend fun fetchRooms(fetchRoomParam: FetchRoomParam): RoomsEntity
+    suspend fun fetchRooms(roomPage: RoomPageEntity): RoomsEntity
 }

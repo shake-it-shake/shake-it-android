@@ -6,6 +6,6 @@ import javax.inject.Inject
 class RemoveAccountUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) {
-    suspend fun removeAccount() =
+    suspend fun execute() =
         userRepository.removeAccount()
 }
