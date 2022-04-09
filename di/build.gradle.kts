@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -28,11 +29,25 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data"))
+    implementation(project(":ui"))
+
     testImplementation(Dependency.Test.junit)
     testImplementation(Dependency.Test.mockito)
     androidTestImplementation(Dependency.Test.androidJunit)
     testImplementation(Dependency.Test.mockitoKotlin)
     testImplementation(Dependency.Test.mockitoInline)
 
-    implementation(Dependency.Coroutine.core)
+    implementation(Dependency.Date.threeTenAbp)
+
+    implementation(Dependency.LocalStorage.sharedPreference)
+
+    implementation(Dependency.Network.okhttp)
+    implementation(Dependency.Network.loggingInterceptor)
+    implementation(Dependency.Network.retrofit)
+    implementation(Dependency.Network.gsonConverter)
+
+    implementation(Dependency.DI.hiltAndroid)
+    kapt(Dependency.DI.hiltCompiler)
 }
