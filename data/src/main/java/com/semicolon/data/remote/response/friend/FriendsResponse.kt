@@ -1,6 +1,7 @@
 package com.semicolon.data.remote.response.friend
 
 import com.google.gson.annotations.SerializedName
+import com.semicolon.domain.entity.friend.FriendsEntity
 
 data class FriendsResponse(
     @SerializedName("friends") val friends: List<Friend>
@@ -13,3 +14,16 @@ data class FriendsResponse(
         @SerializedName("room_id") val roomId: Long?
     )
 }
+
+fun FriendsResponse.toEntity() =
+    FriendsEntity(
+        friends = this.friends.map {
+            FriendsEntity.FriendEntity(
+                id = it.id,
+                userId = it.userId,
+                nickname = it.nickname,
+                profilePath = it.profilePath,
+                roomId = it.roomId
+            )
+        }
+    )
