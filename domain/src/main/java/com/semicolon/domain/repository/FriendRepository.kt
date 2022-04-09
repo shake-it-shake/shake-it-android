@@ -1,15 +1,15 @@
 package com.semicolon.domain.repository
 
-import com.semicolon.domain.entity.friend.AcceptFriendRequestEntity
+import com.semicolon.domain.entity.friend.AcceptFriendEntity
 import com.semicolon.domain.entity.friend.DeleteFriendEntity
 import com.semicolon.domain.entity.friend.FriendsEntity
-import com.semicolon.domain.entity.friend.SendFriendRequestEntity
+import com.semicolon.domain.entity.friend.AddFriendEntity
 
 interface FriendRepository {
 
-    suspend fun sendFriendRequest(sendFriendRequest: SendFriendRequestEntity)
+    suspend fun addFriend(addFriendEntity: AddFriendEntity)
 
-    suspend fun acceptFriendRequest(acceptFriendRequestEntity: AcceptFriendRequestEntity)
+    suspend fun acceptFriend(acceptFriendEntity: AcceptFriendEntity)
 
     suspend fun fetchFriends(): FriendsEntity
 

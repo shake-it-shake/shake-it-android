@@ -1,15 +1,15 @@
 package com.semicolon.data.remote.datasource
 
-import com.semicolon.domain.entity.friend.AcceptFriendRequestEntity
+import com.semicolon.domain.entity.friend.AcceptFriendEntity
 import com.semicolon.domain.entity.friend.DeleteFriendEntity
 import com.semicolon.domain.entity.friend.FriendsEntity
-import com.semicolon.domain.entity.friend.SendFriendRequestEntity
+import com.semicolon.domain.entity.friend.AddFriendEntity
 
 interface RemoteFriendDataSource {
 
-    suspend fun addFriend(sendFriendRequest: SendFriendRequestEntity)
+    suspend fun addFriend(addFriendRequest: AddFriendEntity)
 
-    suspend fun acceptFriend(acceptFriendRequestEntity: AcceptFriendRequestEntity)
+    suspend fun acceptFriend(acceptFriendEntity: AcceptFriendEntity)
 
     suspend fun fetchFriends(): FriendsEntity
 
