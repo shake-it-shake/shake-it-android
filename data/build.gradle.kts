@@ -31,6 +31,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+
     testImplementation(Dependency.Test.junit)
     testImplementation(Dependency.Test.mockito)
     androidTestImplementation(Dependency.Test.androidJunit)

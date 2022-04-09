@@ -26,7 +26,7 @@ class AuthPreferenceImpl @Inject constructor(
     override fun fetchRefreshToken(): String =
         sharedPreferences.getString(REFRESH_TOKEN, "") ?: ""
 
-    override fun setExpiredAt(expiredAt: LocalDateTime) =
+    override fun saveExpiredAt(expiredAt: LocalDateTime) =
         sharedPreferences.edit().let {
             it.putString(EXPIRED_AT, expiredAt.toString())
             it.apply()

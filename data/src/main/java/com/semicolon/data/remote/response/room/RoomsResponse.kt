@@ -1,6 +1,7 @@
 package com.semicolon.data.remote.response.room
 
 import com.google.gson.annotations.SerializedName
+import com.semicolon.domain.entity.room.RoomsEntity
 
 data class RoomsResponse(
     @SerializedName("rooms") val rooms: List<Room>
@@ -19,3 +20,22 @@ data class RoomsResponse(
         @SerializedName("profile_path") val profilePath: String
     )
 }
+
+fun RoomsResponse.toEntity() =
+    RoomsEntity(
+        rooms = rooms.map { room ->
+            RoomsEntity.RoomEntity(
+                id = room.id,
+                title = room.title,
+                roomImage = room.roomImage,
+                personnel = room.personnel,
+                currentCount = room.currentCount,
+                member = room.member.map { member ->
+                    RoomsEntity.MemberEntity(
+                        name = member.name,
+                        profilePath = member.profilePath
+                    )
+                }
+            )
+        }
+    )
