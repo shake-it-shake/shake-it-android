@@ -11,5 +11,5 @@ interface LocalAuthDataSource {
 
     suspend fun saveAccount(loginEntity: LoginEntity)
 
-    suspend fun fetchLoginEntity(): LoginEntity
+    suspend fun fetchAccount(): LoginEntity
 }

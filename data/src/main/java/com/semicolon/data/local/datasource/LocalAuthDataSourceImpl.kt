@@ -29,7 +29,7 @@ class LocalAuthDataSourceImpl @Inject constructor(
             it.savePassword(loginEntity.password)
         }
 
-    override suspend fun fetchLoginEntity(): LoginEntity =
+    override suspend fun fetchAccount(): LoginEntity =
         LoginEntity(
             id = authPreference.fetchId(),
             password = authPreference.fetchPassword()
