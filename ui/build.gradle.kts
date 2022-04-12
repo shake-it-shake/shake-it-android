@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":di"))
+
     implementation(Dependency.coreKtx)
     implementation(Dependency.appcompat)
     implementation(Dependency.androidKtx)
