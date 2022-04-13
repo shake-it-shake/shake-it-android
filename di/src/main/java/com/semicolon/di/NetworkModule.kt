@@ -1,6 +1,8 @@
 package com.semicolon.di
 
 import com.semicolon.data.remote.api.FriendApi
+import com.semicolon.data.remote.api.ImageApi
+import com.semicolon.data.remote.api.RoomApi
 import com.semicolon.data.remote.api.UserApi
 import dagger.Module
 import dagger.Provides
@@ -46,10 +48,15 @@ object NetworkModule {
     @Provides
     fun provideRoomApi(
         retrofit: Retrofit
-    ): UserApi = retrofit.create(UserApi::class.java)
+    ): RoomApi = retrofit.create(RoomApi::class.java)
 
     @Provides
     fun provideFriendApi(
         retrofit: Retrofit
     ): FriendApi = retrofit.create(FriendApi::class.java)
+
+    @Provides
+    fun provideImageApi(
+        retrofit: Retrofit
+    ): ImageApi = retrofit.create(ImageApi::class.java)
 }
