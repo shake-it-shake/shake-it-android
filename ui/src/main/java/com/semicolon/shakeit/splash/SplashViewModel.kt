@@ -13,9 +13,7 @@ class SplashViewModel @Inject constructor(
     fun autoLogin() = execute(
         job = { autoLoginUseCase.execute() },
         onSuccess = { emitEvent(Event.AutoLoginSuccess) },
-        onFailure = {
-            println("실패")
-            emitEvent(Event.AutoLoginFailure) }
+        onFailure = { emitEvent(Event.AutoLoginFailure) }
     )
 
     sealed class Event {
