@@ -21,7 +21,6 @@ class FriendRepositoryImpl @Inject constructor(
     override suspend fun deleteFriend(deleteFriendEntity: DeleteFriendEntity) =
         remoteFriendDataSource.deleteFriend(deleteFriendEntity)
 
-    override suspend fun fetchFriendRequests(): FriendRequestsEntity {
-        TODO("Not yet implemented")
-    }
+    override suspend fun fetchFriendRequests(): FriendRequestsEntity =
+        remoteFriendDataSource.fetchFriendRequests()
 }
