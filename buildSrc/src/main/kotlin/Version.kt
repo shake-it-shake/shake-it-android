@@ -26,5 +26,5 @@ object Version {
     const val hiltCompose = "1.0.0"
     const val threeTenAbp = "1.3.1"
     const val navigationCompose = "2.4.2"
-    const val semicolonDesign = "1.1.0"
+    const val semicolonDesign = "1.2.0"
 }
