@@ -3,10 +3,7 @@ package com.semicolon.data.remote.datasource
 import com.semicolon.data.remote.api.FriendApi
 import com.semicolon.data.remote.request.friend.toRequest
 import com.semicolon.data.remote.response.friend.toEntity
-import com.semicolon.domain.entity.friend.AcceptFriendEntity
-import com.semicolon.domain.entity.friend.DeleteFriendEntity
-import com.semicolon.domain.entity.friend.FriendsEntity
-import com.semicolon.domain.entity.friend.AddFriendEntity
+import com.semicolon.domain.entity.friend.*
 import javax.inject.Inject
 
 class RemoteFriendDataSourceImpl @Inject constructor(
@@ -24,4 +21,8 @@ class RemoteFriendDataSourceImpl @Inject constructor(
 
     override suspend fun deleteFriend(deleteFriendEntity: DeleteFriendEntity) =
         friendApi.deleteFriend(deleteFriendEntity.toRequest())
+
+    override suspend fun fetchFriendRequests(): FriendRequestsEntity {
+        TODO("Not yet implemented")
+    }
 }
