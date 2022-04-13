@@ -6,6 +6,6 @@ data class FriendRequestsEntity(
     data class FriendRequestEntity(
         val userId: String,
         val nickname: String,
-        val image_path: String
+        val imagePath: String
     )
 }
