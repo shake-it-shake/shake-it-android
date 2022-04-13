@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -37,10 +39,14 @@ android {
         dataBinding = true
         compose = true
     }
+    hilt {
+        enableAggregatingTask = true
+    }
 }
 
 dependencies {
     implementation(project(":di"))
+    implementation(project(":domain"))
 
     implementation(Dependency.coreKtx)
     implementation(Dependency.appcompat)
@@ -62,4 +68,10 @@ dependencies {
     testImplementation(Dependency.Test.mockito)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
+
+    implementation(Dependency.DI.hiltAndroid)
+    implementation(Dependency.DI.hiltCompose)
+    kapt(Dependency.DI.hiltCompiler)
+
+    implementation(Dependency.Date.threeTenAbp)
 }

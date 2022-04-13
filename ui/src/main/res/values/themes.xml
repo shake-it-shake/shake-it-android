@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.Shakeit" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:background">@color/black</item>
     </style>
 </resources>
