@@ -21,6 +21,8 @@ object Dependency {
             "androidx.activity:activity-compose:${Version.activityCompose}"
         const val coilCompose =
             "io.coil-kt:coil-compose:${Version.coilCompose}"
+        const val navigationCompose =
+            "androidx.navigation:navigation-compose:${Version.navigationCompose}"
     }
 
     object GradlePlugin {

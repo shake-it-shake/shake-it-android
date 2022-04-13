@@ -25,4 +25,5 @@ object Version {
     const val coilCompose = "1.4.0"
     const val hiltCompose = "1.0.0"
     const val threeTenAbp = "1.3.1"
+    const val navigationCompose = "2.4.2"
 }
