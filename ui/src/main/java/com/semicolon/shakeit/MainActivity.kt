@@ -12,8 +12,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.semicolon.shakeit.splash.SplashScreen
 import com.semicolon.shakeit.ui.theme.ShakeitTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,7 @@ fun ShakeIt() {
         startDestination = Screen.Splash.route
     ) {
         composable(Screen.Splash.route) {
-            // TODO 스플래쉬 화면으로 이동
+            SplashScreen(navController)
         }
         composable(Screen.Login.route) {
             // TODO 로그인 화면으로 이동
