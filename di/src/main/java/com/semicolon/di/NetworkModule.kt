@@ -1,5 +1,6 @@
 package com.semicolon.di
 
+import com.semicolon.data.interceptor.AuthorizationInterceptor
 import com.semicolon.data.remote.api.FriendApi
 import com.semicolon.data.remote.api.ImageApi
 import com.semicolon.data.remote.api.RoomApi
@@ -26,8 +27,10 @@ object NetworkModule {
 
     @Provides
     fun provideOkHttpclient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        authorizationInterceptor: AuthorizationInterceptor
     ): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(authorizationInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .build()
 
