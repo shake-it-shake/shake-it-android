@@ -2,6 +2,7 @@ package com.semicolon.shakeit.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.semicolon.domain.exception.NeedLoginException
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel<T> : ViewModel() {
@@ -20,6 +21,9 @@ abstract class BaseViewModel<T> : ViewModel() {
     ) = viewModelScope.launch {
         kotlin.runCatching { job() }
             .onSuccess { onSuccess(it) }
-            .onFailure { onFailure(it) }
+            .onFailure {
+                if (it is NeedLoginException) throw it
+                onFailure(it)
+            }
     }
 }
