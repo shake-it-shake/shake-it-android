@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -41,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(":di"))
+    implementation(project(":domain"))
 
     implementation(Dependency.coreKtx)
     implementation(Dependency.appcompat)
@@ -62,4 +64,9 @@ dependencies {
     testImplementation(Dependency.Test.mockito)
     androidTestImplementation(Dependency.Test.androidJunit)
     androidTestImplementation(Dependency.Test.espresso)
+
+    implementation(Dependency.DI.hiltAndroid)
+    implementation(Dependency.DI.hiltCompose)
+    implementation(Dependency.DI.inject)
+    kapt(Dependency.DI.inject)
 }
