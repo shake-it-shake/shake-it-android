@@ -77,4 +77,10 @@ object Dependency {
     object Date {
         const val threeTenAbp = "com.jakewharton.threetenabp:threetenabp:${Version.threeTenAbp}"
     }
+
+    object Image {
+        const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
+        const val glideCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
+        const val tedImagePicker = "io.github.ParkSangGwon:tedimagepicker:${Version.tedImagePicker}"
+    }
 }

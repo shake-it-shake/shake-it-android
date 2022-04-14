@@ -27,4 +27,6 @@ object Version {
     const val threeTenAbp = "1.3.1"
     const val navigationCompose = "2.4.2"
     const val semicolonDesign = "1.2.3"
+    const val glide = "4.13.0"
+    const val tedImagePicker = "1.2.8"
 }

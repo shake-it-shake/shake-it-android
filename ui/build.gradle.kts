@@ -75,4 +75,8 @@ dependencies {
     kapt(Dependency.DI.hiltCompiler)
 
     implementation(Dependency.Date.threeTenAbp)
+
+    implementation(Dependency.Image.tedImagePicker)
+    implementation(Dependency.Image.glide)
+    kapt(Dependency.Image.glideCompiler)
 }
