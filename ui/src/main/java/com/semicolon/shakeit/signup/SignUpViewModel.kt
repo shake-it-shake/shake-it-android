@@ -11,8 +11,12 @@ class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
 ) : BaseViewModel<SignUpViewModel.Event>() {
 
-    fun signUp(id: String, password: String) = execute(
-        job = { signUpUseCase.execute(SignUpEntity(id = id, password = password)) },
+    fun signUp(id: String, password: String, passwordCheck: String) = execute(
+        job = {
+            if (password == passwordCheck)
+                signUpUseCase.execute(SignUpEntity(id = id, password = password))
+            else emitEvent(Event.CheckPassword)
+        },
         onSuccess = { emitEvent(Event.SignUpSuccess) },
         onFailure = {
             emitEvent(Event.ExistAccount)
@@ -24,5 +28,6 @@ class SignUpViewModel @Inject constructor(
         object SignUpSuccess : Event()
         object WrongAccount : Event()
         object ExistAccount : Event()
+        object CheckPassword : Event()
     }
 }
