@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
     kotlin("android")
-    kotlin("kapt")
 }
 
 android {
@@ -72,11 +71,11 @@ dependencies {
 
     implementation(Dependency.DI.hiltAndroid)
     implementation(Dependency.DI.hiltCompose)
-    kapt(Dependency.DI.hiltCompiler)
+    annotationProcessor(Dependency.DI.hiltCompiler)
 
     implementation(Dependency.Date.threeTenAbp)
 
     implementation(Dependency.Image.tedImagePicker)
     implementation(Dependency.Image.glide)
-    kapt(Dependency.Image.glideCompiler)
+    annotationProcessor(Dependency.Image.glideCompiler)
 }
