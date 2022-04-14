@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.semicolon.shakeit.login.LoginScreen
+import com.semicolon.shakeit.signup.SignUpScreen
 import com.semicolon.shakeit.splash.SplashScreen
 import com.semicolon.shakeit.ui.theme.ShakeitTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +40,7 @@ fun ShakeIt() {
             LoginScreen(navController)
         }
         composable(Screen.SignUp.route) {
-            // TODO 회원가입 화면으로 이동
+            SignUpScreen(navController)
         }
         composable(Screen.Main.route) {
             MainScaffold()
