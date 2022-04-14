@@ -1,4 +1,4 @@
-package com.semicolon.shakeit.signup
+package com.semicolon.shakeit.feature.signup
 
 import com.semicolon.domain.entity.user.SignUpEntity
 import com.semicolon.domain.exception.BadRequestException

@@ -1,4 +1,4 @@
-package com.semicolon.shakeit.splash
+package com.semicolon.shakeit.feature.splash
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

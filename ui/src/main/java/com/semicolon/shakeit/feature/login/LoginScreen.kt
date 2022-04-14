@@ -1,4 +1,4 @@
-package com.semicolon.shakeit.login
+package com.semicolon.shakeit.feature.login
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

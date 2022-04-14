@@ -1,4 +1,4 @@
-package com.semicolon.shakeit.splash
+package com.semicolon.shakeit.feature.splash
 
 import com.semicolon.domain.usecase.user.AutoLoginUseCase
 import com.semicolon.shakeit.base.BaseViewModel

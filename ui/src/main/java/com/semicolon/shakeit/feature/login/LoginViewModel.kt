@@ -1,4 +1,4 @@
-package com.semicolon.shakeit.login
+package com.semicolon.shakeit.feature.login
 
 import com.semicolon.domain.entity.user.LoginEntity
 import com.semicolon.domain.usecase.user.LoginUseCase
