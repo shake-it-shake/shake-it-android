@@ -63,6 +63,7 @@ dependencies {
     implementation(Dependency.UI.activityCompose)
     implementation(Dependency.UI.coilCompose)
     implementation(Dependency.UI.navigationCompose)
+    implementation(Dependency.UI.semicolonDesign)
 
     testImplementation(Dependency.Test.junit)
     testImplementation(Dependency.Test.mockito)

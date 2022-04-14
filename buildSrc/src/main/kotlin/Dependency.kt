@@ -23,6 +23,8 @@ object Dependency {
             "io.coil-kt:coil-compose:${Version.coilCompose}"
         const val navigationCompose =
             "androidx.navigation:navigation-compose:${Version.navigationCompose}"
+        const val semicolonDesign =
+            "com.github.semicolondsm:semicolondesign_android:${Version.semicolonDesign}"
     }
 
     object GradlePlugin {
