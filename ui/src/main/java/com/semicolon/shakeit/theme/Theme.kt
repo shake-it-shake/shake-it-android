@@ -1,4 +1,4 @@
-package com.semicolon.shakeit.ui.theme
+package com.semicolon.shakeit.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

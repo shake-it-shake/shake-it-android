@@ -1,4 +1,4 @@
-package com.semicolon.shakeit.ui.theme
+package com.semicolon.shakeit.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
