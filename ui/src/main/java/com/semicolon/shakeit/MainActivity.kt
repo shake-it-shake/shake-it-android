@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.semicolon.shakeit.feature.login.LoginScreen
+import com.semicolon.shakeit.feature.editprofile.EditProfileScreen
 import com.semicolon.shakeit.feature.signup.SignUpScreen
 import com.semicolon.shakeit.feature.splash.SplashScreen
 import com.semicolon.shakeit.theme.ShakeitTheme
@@ -41,6 +42,9 @@ fun ShakeIt() {
         }
         composable(Screen.SignUp.route) {
             SignUpScreen(navController)
+        }
+        composable(Screen.EditProfile.route) {
+            EditProfileScreen(navController)
         }
         composable(Screen.Main.route) {
             MainScaffold()
@@ -102,6 +106,8 @@ sealed class Screen(val route: String) {
     object Login : Screen("login")
 
     object SignUp : Screen("signup")
+
+    object EditProfile : Screen("profile")
 
     object Main : Screen("main")
 
