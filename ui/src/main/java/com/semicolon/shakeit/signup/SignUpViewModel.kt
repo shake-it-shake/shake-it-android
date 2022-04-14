@@ -1,6 +1,9 @@
 package com.semicolon.shakeit.signup
 
 import com.semicolon.domain.entity.user.SignUpEntity
+import com.semicolon.domain.exception.BadRequestException
+import com.semicolon.domain.exception.CheckPasswordException
+import com.semicolon.domain.exception.ConflictException
 import com.semicolon.domain.usecase.user.SignUpUseCase
 import com.semicolon.shakeit.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,12 +18,16 @@ class SignUpViewModel @Inject constructor(
         job = {
             if (password == passwordCheck)
                 signUpUseCase.execute(SignUpEntity(id = id, password = password))
-            else emitEvent(Event.CheckPassword)
+            else throw CheckPasswordException()
         },
         onSuccess = { emitEvent(Event.SignUpSuccess) },
         onFailure = {
-            emitEvent(Event.ExistAccount)
-            // TODO : 에러 처리코드 추가
+            when (it) {
+                is BadRequestException -> emitEvent(Event.WrongAccount)
+                is ConflictException -> emitEvent(Event.ExistAccount)
+                is CheckPasswordException -> emitEvent(Event.CheckPassword)
+                else -> emitEvent(Event.UnknownError)
+            }
         }
     )
 
@@ -29,5 +36,6 @@ class SignUpViewModel @Inject constructor(
         object WrongAccount : Event()
         object ExistAccount : Event()
         object CheckPassword : Event()
+        object UnknownError : Event()
     }
 }
