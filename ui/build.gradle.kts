@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -71,7 +72,7 @@ dependencies {
 
     implementation(Dependency.DI.hiltAndroid)
     implementation(Dependency.DI.hiltCompose)
-    annotationProcessor(Dependency.DI.hiltCompiler)
+    kapt(Dependency.DI.hiltCompiler)
 
     implementation(Dependency.Date.threeTenAbp)
 
