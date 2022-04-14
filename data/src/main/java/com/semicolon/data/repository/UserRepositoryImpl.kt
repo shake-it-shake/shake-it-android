@@ -19,11 +19,15 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun login(loginEntity: LoginEntity) {
         val token = remoteUserDataSource.login(loginEntity)
         localAuthDataSource.saveToken(token)
+        localAuthDataSource.saveAccount(loginEntity)
     }
 
     override suspend fun signUp(signUpEntity: SignUpEntity) {
         val token = remoteUserDataSource.signUp(signUpEntity)
         localAuthDataSource.saveToken(token)
+        localAuthDataSource.saveAccount(
+            LoginEntity(id = signUpEntity.id, password = signUpEntity.password)
+        )
     }
 
     override suspend fun removeAccount() =
