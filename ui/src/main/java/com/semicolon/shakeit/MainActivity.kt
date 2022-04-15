@@ -3,10 +3,16 @@ package com.semicolon.shakeit
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,7 +38,7 @@ fun ShakeIt() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.Main.route
     ) {
         composable(Screen.Splash.route) {
             SplashScreen(navController)
@@ -60,8 +66,11 @@ fun MainScaffold() {
     val scaffoldState = rememberScaffoldState()
     val navController = rememberNavController()
     Scaffold(
+        backgroundColor = Color.Black,
         bottomBar = {
-            BottomNavigation {
+            BottomNavigation(
+                Modifier.padding(horizontal = 16.dp)
+            ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
                 val items = listOf(
@@ -71,6 +80,8 @@ fun MainScaffold() {
                 )
                 items.forEach { screen ->
                     BottomNavigationItem(
+                        modifier =Modifier
+                            .background(Color.Black),
                         icon = screen.icon,
                         label = { Text(screen.label) },
                         selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
@@ -81,7 +92,7 @@ fun MainScaffold() {
                 }
             }
         },
-        scaffoldState = scaffoldState
+        scaffoldState = scaffoldState 
     ) {
         NavHost(
             navController = navController,
