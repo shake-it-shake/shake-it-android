@@ -23,7 +23,8 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun logout() {
-        TODO("Not yet implemented")
+        localAuthDataSource.clearToken()
+        localAuthDataSource.clearAccount()
     }
 
     override suspend fun signUp(signUpEntity: SignUpEntity) {
