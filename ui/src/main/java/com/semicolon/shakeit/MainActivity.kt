@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -38,7 +38,7 @@ fun ShakeIt() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.Main.route
+        startDestination = Screen.Splash.route
     ) {
         composable(Screen.Splash.route) {
             SplashScreen(navController)
@@ -79,12 +79,15 @@ fun MainScaffold() {
                     BottomNavigationScreen.Profile
                 )
                 items.forEach { screen ->
+                    val selected =
+                        currentDestination?.hierarchy?.any { it.route == screen.route } == true
+                    val color = if (selected) Color(0xFFFF6262) else Color.White
                     BottomNavigationItem(
-                        modifier =Modifier
+                        modifier = Modifier
                             .background(Color.Black),
-                        icon = screen.icon,
-                        label = { Text(screen.label) },
-                        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                        icon = { Icon(screen.icon(), null, tint = color) },
+                        label = { Text(screen.label, color = color) },
+                        selected = selected,
                         onClick = {
                             navController.navigate(screen.route)
                         }
@@ -92,7 +95,7 @@ fun MainScaffold() {
                 }
             }
         },
-        scaffoldState = scaffoldState 
+        scaffoldState = scaffoldState
     ) {
         NavHost(
             navController = navController,
@@ -127,24 +130,24 @@ sealed class Screen(val route: String) {
 
 sealed class BottomNavigationScreen(
     val route: String,
-    val icon: @Composable () -> Unit,
+    val icon: @Composable () -> Painter,
     val label: String
 ) {
     object Club : BottomNavigationScreen(
         route = "main/club",
-        icon = { Icon(painterResource(R.drawable.ic_disco), null) },
+        icon = { painterResource(R.drawable.ic_disco) },
         label = "클럽"
     )
 
     object Friend : BottomNavigationScreen(
         route = "main/friend",
-        icon = { Icon(painterResource(R.drawable.ic_friend), null) },
+        icon = { painterResource(R.drawable.ic_friend) },
         label = "친구"
     )
 
     object Profile : BottomNavigationScreen(
         route = "main/profile",
-        icon = { Icon(painterResource(R.drawable.ic_profile), null) },
+        icon = { painterResource(R.drawable.ic_profile) },
         label = "프로필"
     )
 }
