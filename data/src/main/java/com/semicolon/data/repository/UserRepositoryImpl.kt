@@ -22,6 +22,10 @@ class UserRepositoryImpl @Inject constructor(
         localAuthDataSource.saveAccount(loginEntity)
     }
 
+    override suspend fun logout() {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun signUp(signUpEntity: SignUpEntity) {
         val token = remoteUserDataSource.signUp(signUpEntity)
         localAuthDataSource.saveToken(token)
