@@ -9,49 +9,64 @@ class AuthPreferenceImpl @Inject constructor(
 ) : AuthPreference {
 
     override fun saveAccessToken(accessToken: String) =
-        sharedPreferences.edit().let {
-            it.putString(ACCESS_TOKEN, accessToken)
-            it.apply()
-        }
+        saveStringPreference(ACCESS_TOKEN, accessToken)
 
     override fun fetchAccessToken(): String =
-        sharedPreferences.getString(ACCESS_TOKEN, "") ?: ""
+        fetchStringPreference(ACCESS_TOKEN)
+
+    override fun clearAccessToken() =
+        clearPreference(ACCESS_TOKEN)
 
     override fun saveRefreshToken(refreshToken: String) =
-        sharedPreferences.edit().let {
-            it.putString(REFRESH_TOKEN, refreshToken)
-            it.apply()
-        }
+        saveStringPreference(REFRESH_TOKEN, refreshToken)
 
     override fun fetchRefreshToken(): String =
-        sharedPreferences.getString(REFRESH_TOKEN, "") ?: ""
+        fetchStringPreference(REFRESH_TOKEN)
+
+    override fun clearRefreshToken() =
+        clearPreference(REFRESH_TOKEN)
 
     override fun saveExpiredAt(expiredAt: LocalDateTime) =
-        sharedPreferences.edit().let {
-            it.putString(EXPIRED_AT, expiredAt.toString())
-            it.apply()
-        }
+        saveStringPreference(EXPIRED_AT, expiredAt.toString())
 
     override fun fetchExpiredAt(): LocalDateTime =
-        LocalDateTime.parse(sharedPreferences.getString(EXPIRED_AT, "") ?: "")
+        LocalDateTime.parse(fetchStringPreference(EXPIRED_AT))
+
+    override fun clearExpiredAt() =
+        clearPreference(EXPIRED_AT)
 
     override fun saveId(id: String) =
-        sharedPreferences.edit().let {
-            it.putString(ID, id)
-            it.apply()
-        }
+        saveStringPreference(ID, id)
 
     override fun fetchId(): String =
-        sharedPreferences.getString(ID, "") ?: ""
+        fetchStringPreference(ID)
+
+    override fun clearId() =
+        clearPreference(ID)
 
     override fun savePassword(password: String) =
-        sharedPreferences.edit().let {
-            it.putString(PASSWORD, password)
-            it.apply()
-        }
+        saveStringPreference(PASSWORD, password)
 
     override fun fetchPassword(): String =
-        sharedPreferences.getString(PASSWORD, "") ?: ""
+        fetchStringPreference(PASSWORD)
+
+    override fun clearPassword() =
+        clearPreference(PASSWORD)
+
+    private fun fetchStringPreference(key: String): String =
+        sharedPreferences.getString(key, null) ?: ""
+
+    private fun saveStringPreference(key: String, value: String) =
+        editPreference { it.putString(key, value) }
+
+    private fun clearPreference(key: String) =
+        editPreference { it.remove(key) }
+
+    private fun editPreference(edit: (SharedPreferences.Editor) -> Unit) =
+        sharedPreferences.edit().let {
+            edit(it)
+            it.apply()
+        }
 
     companion object Key {
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
