@@ -9,7 +9,11 @@ interface LocalAuthDataSource {
 
     suspend fun fetchToken(): TokenEntity
 
+    suspend fun clearToken()
+
     suspend fun saveAccount(loginEntity: LoginEntity)
 
     suspend fun fetchAccount(): LoginEntity
+
+    suspend fun clearAccount()
 }

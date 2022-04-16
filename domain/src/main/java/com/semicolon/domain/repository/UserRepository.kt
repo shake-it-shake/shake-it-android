@@ -8,6 +8,8 @@ interface UserRepository {
 
     suspend fun login(loginEntity: LoginEntity)
 
+    suspend fun logout()
+
     suspend fun signUp(signUpEntity: SignUpEntity)
 
     suspend fun removeAccount()
