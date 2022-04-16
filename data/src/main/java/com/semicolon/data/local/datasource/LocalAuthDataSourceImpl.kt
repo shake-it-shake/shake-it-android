@@ -23,6 +23,12 @@ class LocalAuthDataSourceImpl @Inject constructor(
             expiredAt = authPreference.fetchExpiredAt()
         )
 
+    override suspend fun clearToken() {
+        authPreference.clearAccessToken()
+        authPreference.clearRefreshToken()
+        authPreference.clearExpiredAt()
+    }
+
     override suspend fun saveAccount(loginEntity: LoginEntity) =
         authPreference.let {
             it.saveId(loginEntity.id)
@@ -34,4 +40,9 @@ class LocalAuthDataSourceImpl @Inject constructor(
             id = authPreference.fetchId(),
             password = authPreference.fetchPassword()
         )
+
+    override suspend fun clearAccount() {
+        authPreference.clearId()
+        authPreference.clearPassword()
+    }
 }
