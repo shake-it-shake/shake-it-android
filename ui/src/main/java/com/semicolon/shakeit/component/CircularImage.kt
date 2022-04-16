@@ -26,13 +26,13 @@ fun CircularImage(image: File?, size: Dp, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CircularImage(imageUrl: String, radius: Dp, modifier: Modifier = Modifier) {
+fun CircularImage(imageUrl: String, size: Dp, modifier: Modifier = Modifier) {
     Image(
         painter = rememberImagePainter(imageUrl),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = modifier
-            .size(radius)
+            .size(size)
             .clip(CircleShape)
     )
 }

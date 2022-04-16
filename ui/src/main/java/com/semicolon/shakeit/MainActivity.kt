@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,6 +21,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.semicolon.shakeit.feature.login.LoginScreen
 import com.semicolon.shakeit.feature.editprofile.EditProfileScreen
+import com.semicolon.shakeit.feature.profile.ProfileScreen
 import com.semicolon.shakeit.feature.signup.SignUpScreen
 import com.semicolon.shakeit.feature.splash.SplashScreen
 import com.semicolon.shakeit.theme.ShakeitTheme
@@ -53,7 +55,7 @@ fun ShakeIt() {
             EditProfileScreen(navController)
         }
         composable(Screen.Main.route) {
-            MainScaffold()
+            MainScaffold(navController)
         }
         composable(Screen.Club.route) {
             // TODO 클럽 화면으로 이동
@@ -62,7 +64,9 @@ fun ShakeIt() {
 }
 
 @Composable
-fun MainScaffold() {
+fun MainScaffold(
+    mainNavController: NavController
+) {
     val scaffoldState = rememberScaffoldState()
     val navController = rememberNavController()
     Scaffold(
@@ -108,7 +112,7 @@ fun MainScaffold() {
                 // TODO 친구 화면으로 이동
             }
             composable(BottomNavigationScreen.Profile.route) {
-                // TODO 프로필 화면으로 이동
+                ProfileScreen(mainNavController)
             }
         }
     }
