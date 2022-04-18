@@ -90,7 +90,6 @@ private fun EditProfile(
             Modifier
                 .padding(bottom = 52.dp)
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)
         ) {
             Box(
                 Modifier
@@ -101,40 +100,46 @@ private fun EditProfile(
                 Icon(
                     painterResource(R.drawable.ic_cancel),
                     contentDescription = null,
-                    Modifier.size(24.dp)
+                    Modifier.size(24.dp),
+                    tint = Color.White
                 )
             }
-            Spacer(Modifier.size(16.dp))
-            Subtitle3("프로필 설정", color = Color.White, fontWeight = FontWeight.Bold)
-            Spacer(Modifier.size(12.dp))
-            Body2(
-                text = errorMessage ?: "사진과 닉네임을 설정해주세요",
-                color = if (errorMessage != null) red400 else gray300
-            )
-            Spacer(Modifier.size(24.dp))
-            Box(
+            Column(
                 Modifier
-                    .fillMaxWidth(),
-                contentAlignment = Alignment.Center
+                    .padding(horizontal = 16.dp)
             ) {
-                CircularImage(
-                    image = profileImage,
-                    size = 128.dp,
-                    modifier = Modifier.clickable {
-                        coroutineScope.launch {
-                            fetchImage(context)?.let { profileImage = it }
-                        }
-                    })
+                Spacer(Modifier.size(16.dp))
+                Subtitle3("프로필 설정", color = Color.White, fontWeight = FontWeight.Bold)
+                Spacer(Modifier.size(12.dp))
+                Body2(
+                    text = errorMessage ?: "사진과 닉네임을 설정해주세요",
+                    color = if (errorMessage != null) red400 else gray300
+                )
+                Spacer(Modifier.size(24.dp))
+                Box(
+                    Modifier
+                        .fillMaxWidth(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularImage(
+                        image = profileImage,
+                        size = 128.dp,
+                        modifier = Modifier.clickable {
+                            coroutineScope.launch {
+                                fetchImage(context)?.let { profileImage = it }
+                            }
+                        })
+                }
+                Spacer(Modifier.size(24.dp))
+                TextField(
+                    text = nicknameTextField,
+                    onTextChange = { nicknameTextField = it },
+                    placeholder = "닉네임"
+                )
             }
-            Spacer(Modifier.size(24.dp))
-            TextField(
-                text = nicknameTextField,
-                onTextChange = { nicknameTextField = it },
-                placeholder = "닉네임"
-            )
         }
         BigPrimaryButton(
-            text = "회원가입",
+            text = "완료",
             isEnabled = isEnabled
         ) {
             onCompleteClick(profileImage!!, nicknameTextField)
