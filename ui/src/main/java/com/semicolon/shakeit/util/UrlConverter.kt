@@ -11,6 +11,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
 import javax.inject.Inject
 import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 class UrlConverter @Inject constructor(@ApplicationContext private val context: Context) {
@@ -25,8 +26,11 @@ class UrlConverter @Inject constructor(@ApplicationContext private val context: 
                     override fun onResourceReady(resource: File, transition: Transition<in File>?) {
                         it.resume(resource)
                     }
+                    override fun onLoadFailed(errorDrawable: Drawable?) {
+                        it.resumeWithException(ImageConvertException())
+                    }
                     override fun onLoadCleared(placeholder: Drawable?) {
-                        throw ImageConvertException()
+                        it.resumeWithException(ImageConvertException())
                     }
                 })
         }
