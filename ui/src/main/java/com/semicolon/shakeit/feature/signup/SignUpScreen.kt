@@ -72,7 +72,6 @@ private fun SignUp(
             Modifier
                 .padding(bottom = 52.dp)
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)
         ) {
             Box(
                 Modifier
@@ -83,37 +82,44 @@ private fun SignUp(
                 Icon(
                     painterResource(R.drawable.ic_cancel),
                     contentDescription = null,
-                    Modifier.size(24.dp)
+                    Modifier.size(24.dp),
+                    tint = Color.White
                 )
             }
-            Spacer(Modifier.size(16.dp))
-            Subtitle3("회원가입하고", color = Color.White, fontWeight = FontWeight.Bold)
-            Subtitle3("흔들 준비 되셨나요?", color = Color.White, fontWeight = FontWeight.Bold)
-            Spacer(Modifier.size(12.dp))
-            Body2(
-                text = errorMessage ?: "아이디와 비밀번호를 입력해주세요",
-                color = if (errorMessage != null) red400 else gray300
-            )
-            Spacer(Modifier.size(24.dp))
-            TextField(
-                text = idTextField,
-                onTextChange = { idTextField = it },
-                placeholder = "아이디"
-            )
-            Spacer(Modifier.size(12.dp))
-            TextField(
-                text = passwordTextField,
-                isSecret = true,
-                onTextChange = { passwordTextField = it },
-                placeholder = "비밀번호"
-            )
-            Spacer(Modifier.size(12.dp))
-            TextField(
-                text = passwordCheckTextField,
-                isSecret = true,
-                onTextChange = { passwordCheckTextField = it },
-                placeholder = "비밀번호 확인"
-            )
+            Column(
+                Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+
+                Spacer(Modifier.size(16.dp))
+                Subtitle3("회원가입하고", color = Color.White, fontWeight = FontWeight.Bold)
+                Subtitle3("흔들 준비 되셨나요?", color = Color.White, fontWeight = FontWeight.Bold)
+                Spacer(Modifier.size(12.dp))
+                Body2(
+                    text = errorMessage ?: "아이디와 비밀번호를 입력해주세요",
+                    color = if (errorMessage != null) red400 else gray300
+                )
+                Spacer(Modifier.size(24.dp))
+                TextField(
+                    text = idTextField,
+                    onTextChange = { idTextField = it },
+                    placeholder = "아이디"
+                )
+                Spacer(Modifier.size(12.dp))
+                TextField(
+                    text = passwordTextField,
+                    isSecret = true,
+                    onTextChange = { passwordTextField = it },
+                    placeholder = "비밀번호"
+                )
+                Spacer(Modifier.size(12.dp))
+                TextField(
+                    text = passwordCheckTextField,
+                    isSecret = true,
+                    onTextChange = { passwordCheckTextField = it },
+                    placeholder = "비밀번호 확인"
+                )
+            }
         }
         BigPrimaryButton(
             text = "회원가입",
