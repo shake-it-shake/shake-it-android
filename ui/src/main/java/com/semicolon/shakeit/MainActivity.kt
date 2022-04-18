@@ -93,7 +93,7 @@ fun MainScaffold(
                         label = { Text(screen.label, color = color) },
                         selected = selected,
                         onClick = {
-                            navController.navigate(screen.route)
+                            navController.navigate(screen.route) { popUpTo(0) }
                         }
                     )
                 }
