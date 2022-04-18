@@ -14,13 +14,15 @@ class RemoteFriendDataSourceImpl @Inject constructor(
         friendApi.addFriend(addFriendRequest.toRequest())
 
     override suspend fun acceptFriend(acceptFriendEntity: AcceptFriendEntity) =
-        friendApi.acceptFriend(acceptFriendEntity.toRequest())
+        try { friendApi.acceptFriend(acceptFriendEntity.toRequest()) }
+        catch (e: KotlinNullPointerException) {}
 
     override suspend fun fetchFriends(): FriendsEntity =
         friendApi.fetchFriends().toEntity()
 
     override suspend fun deleteFriend(deleteFriendEntity: DeleteFriendEntity) =
-        friendApi.deleteFriend(deleteFriendEntity.toRequest())
+        try { friendApi.deleteFriend(deleteFriendEntity.toRequest()) }
+        catch (e: KotlinNullPointerException) {}
 
     override suspend fun fetchFriendRequests(): FriendRequestsEntity =
         friendApi.fetchFriendRequests().toEntity()

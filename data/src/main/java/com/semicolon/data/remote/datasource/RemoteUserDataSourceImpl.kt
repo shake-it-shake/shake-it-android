@@ -22,11 +22,13 @@ class RemoteUserDataSourceImpl @Inject constructor(
         userApi.signUp(signUpEntity.toRequest()).toEntity()
 
     override suspend fun removeAccount() =
-        userApi.removeAccount()
+        try { userApi.removeAccount() } catch (e: KotlinNullPointerException) {}
+
 
     override suspend fun editProfile(editProfileEntity: EditProfileEntity) {
         val imagePath = imageApi.sendImage(editProfileEntity.image.toMultipart()).link
-        userApi.editProfile(editProfileEntity.toRequest(imagePath))
+        try { userApi.editProfile(editProfileEntity.toRequest(imagePath)) }
+        catch (e: KotlinNullPointerException) {}
     }
 
     override suspend fun fetchProfile(fetchProfileEntity: FetchProfileEntity): ProfileEntity =
