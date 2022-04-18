@@ -13,7 +13,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun autoLogin() {
         val account = localAuthDataSource.fetchAccount()
-        remoteUserDataSource.login(account)
+        login(account)
     }
 
     override suspend fun login(loginEntity: LoginEntity) {
