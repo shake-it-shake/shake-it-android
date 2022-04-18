@@ -42,7 +42,7 @@ class AuthorizationInterceptor @Inject constructor(
         val client = OkHttpClient()
         val refreshToken = authPreference.fetchRefreshToken()
         val tokenRefreshRequest = Request.Builder()
-            .url("https://server.walkhub.co.kr/users/token")
+            .url("http://13.124.183.39:3000/users/token")
             .patch(RequestBody.create(MediaType.parse("application/json"), ""))
             .addHeader("Refresh-Token", "Bearer $refreshToken")
             .build()
