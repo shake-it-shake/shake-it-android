@@ -27,14 +27,16 @@ import com.semicolon.shakeit.util.makeToast
 fun ProfileScreen(mainNavController: NavController) {
     val context = LocalContext.current
     val profileViewModel: ProfileViewModel = hiltViewModel()
-    val imageUrl by remember { mutableStateOf("https://avatars.githubusercontent.com/u/67129795?v=4") }
-    val nickname by remember { mutableStateOf("신희원") }
+    var imageUrl by remember { mutableStateOf("") }
+    var nickname by remember { mutableStateOf("") }
     LaunchedEffect(Unit) {
         profileViewModel.fetchMyProfile()
         profileViewModel.eventFlow.collect {
             when (it) {
-                is ProfileViewModel.Event.MyProfile.Success ->
-                    mainNavController.navigate(Screen.EditProfile.route)
+                is ProfileViewModel.Event.MyProfile.Success -> {
+                    imageUrl = it.imageUrl
+                    nickname = it.nickname
+                }
                 is ProfileViewModel.Event.MyProfile.Failure ->
                     makeToast(context, "잠시 후 다시 시도해주세요")
                 is ProfileViewModel.Event.Logout.Success ->
