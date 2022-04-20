@@ -78,5 +78,5 @@ dependencies {
 
     implementation(Dependency.Image.tedImagePicker)
     implementation(Dependency.Image.glide)
-    annotationProcessor(Dependency.Image.glideCompiler)
+    kapt(Dependency.Image.glideCompiler)
 }
