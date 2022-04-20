@@ -1,6 +1,7 @@
 package com.semicolon.shakeit.util
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -9,6 +10,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.semicolon.domain.exception.ImageConvertException
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -18,17 +20,26 @@ class UrlConverter @Inject constructor(@ApplicationContext private val context: 
 
     suspend fun convert(url: String): File {
         return suspendCoroutine {
-            Glide.with(context)
-                .asFile()
+            GlideApp.with(context)
+                .asBitmap()
                 .load(url)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(object : CustomTarget<File>() {
-                    override fun onResourceReady(resource: File, transition: Transition<in File>?) {
-                        it.resume(resource)
+                .into(object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        val file = File.createTempFile("JPEG_", ".jpg", context.cacheDir)
+                        FileOutputStream(file)
+                            .use { out -> resource.compress(Bitmap.CompressFormat.JPEG, 100, out) }
+                        file.deleteOnExit()
+                        it.resume(file)
                     }
+
                     override fun onLoadFailed(errorDrawable: Drawable?) {
                         it.resumeWithException(ImageConvertException())
                     }
+
                     override fun onLoadCleared(placeholder: Drawable?) {
                         it.resumeWithException(ImageConvertException())
                     }

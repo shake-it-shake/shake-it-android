@@ -69,17 +69,19 @@ fun EditProfileScreen(navController: NavController) {
 private fun EditProfile(
     errorMessage: String?,
     curImage: File?,
-    curNickname: String?,
+    curNickname: String,
     onCancelClick: () -> Unit,
     onCompleteClick: (image: File, nickname: String) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    var nicknameTextField by remember { mutableStateOf(curNickname ?: "") }
+    var nicknameTextField by remember { mutableStateOf(curNickname) }
     var profileImage by remember { mutableStateOf(curImage) }
     val isEnabled = nicknameTextField.isNotEmpty()
             && profileImage != null
             && (curNickname != nicknameTextField || curImage != profileImage)
+    if (nicknameTextField.isEmpty() && curNickname.isNotEmpty()) nicknameTextField = curNickname
+    if (profileImage == null && curImage != null) profileImage = curImage
     Box(
         Modifier
             .fillMaxSize()

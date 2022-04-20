@@ -7,5 +7,5 @@ import java.io.File
 
 fun File.toMultipart(): MultipartBody.Part {
     val fileBody = RequestBody.create(MediaType.parse("image/jpeg"), this)
-    return MultipartBody.Part.createFormData("files", this.name, fileBody)
+    return MultipartBody.Part.createFormData("file", this.name, fileBody)
 }
