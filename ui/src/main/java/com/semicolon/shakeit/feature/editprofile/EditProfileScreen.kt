@@ -75,7 +75,7 @@ private fun EditProfile(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    var nicknameTextField by remember { mutableStateOf(curNickname ?: "") }
+    var nicknameTextField by remember { mutableStateOf(curNickname) }
     var profileImage by remember { mutableStateOf(curImage) }
     val isEnabled = nicknameTextField.isNotEmpty()
             && profileImage != null
