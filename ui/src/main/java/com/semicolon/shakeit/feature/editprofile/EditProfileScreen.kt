@@ -69,7 +69,7 @@ fun EditProfileScreen(navController: NavController) {
 private fun EditProfile(
     errorMessage: String?,
     curImage: File?,
-    curNickname: String?,
+    curNickname: String,
     onCancelClick: () -> Unit,
     onCompleteClick: (image: File, nickname: String) -> Unit
 ) {
@@ -80,6 +80,8 @@ private fun EditProfile(
     val isEnabled = nicknameTextField.isNotEmpty()
             && profileImage != null
             && (curNickname != nicknameTextField || curImage != profileImage)
+    if (nicknameTextField.isEmpty() && curNickname.isNotEmpty()) nicknameTextField = curNickname
+    if (profileImage == null && curImage != null) profileImage = curImage
     Box(
         Modifier
             .fillMaxSize()
