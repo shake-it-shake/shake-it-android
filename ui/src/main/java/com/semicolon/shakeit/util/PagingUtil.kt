@@ -14,13 +14,14 @@ class ClubPagingSource @Inject constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RoomsEntity.RoomEntity> {
         val page = params.key ?: 0
+        val size = params.loadSize
         return try {
             val rooms = fetchRoomsUseCase
-                .execute(RoomPageEntity(page = page, size = params.loadSize)).rooms
+                .execute(RoomPageEntity(page = page, size = size)).rooms
             LoadResult.Page(
                 data = rooms,
                 prevKey = if (page == 0) null else page - 1,
-                nextKey = if (rooms.isEmpty()) null else page + 1,
+                nextKey = if (rooms.size < size) null else page + 1,
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
@@ -39,6 +40,6 @@ fun fetchRoomsByPaging(
     clubPagingSource: ClubPagingSource
 ): Flow<PagingData<RoomsEntity.RoomEntity>> =
     Pager(
-        config = PagingConfig(pageSize = pageSize),
+        config = PagingConfig(pageSize = pageSize, initialLoadSize = pageSize),
         pagingSourceFactory = { clubPagingSource }
     ).flow
