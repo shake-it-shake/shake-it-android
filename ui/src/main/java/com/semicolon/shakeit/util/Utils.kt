@@ -9,6 +9,9 @@ import android.widget.Toast.LENGTH_SHORT
 import androidx.loader.content.CursorLoader
 import gun0912.tedimagepicker.builder.TedImagePicker
 import gun0912.tedimagepicker.builder.type.MediaType
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.ZoneId
+import org.threeten.bp.ZoneOffset
 import java.io.File
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -38,3 +41,9 @@ private fun getRealPathFromURI(uri: Uri, context: Context): String? {
     return result
 }
 
+fun fetchTimeGap(localDateTime: LocalDateTime): Int {
+    val currentTime = LocalDateTime.now(ZoneId.systemDefault())
+    val gap = currentTime.toEpochSecond(ZoneOffset.UTC)
+        .minus(localDateTime.toEpochSecond(ZoneOffset.UTC))
+    return (gap / 60).toInt()
+}

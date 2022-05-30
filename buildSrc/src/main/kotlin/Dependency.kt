@@ -83,4 +83,9 @@ object Dependency {
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
         const val tedImagePicker = "io.github.ParkSangGwon:tedimagepicker:${Version.tedImagePicker}"
     }
+
+    object Paging {
+        const val paging = "androidx.paging:paging-runtime:${Version.paging}"
+        const val pagingCompose = "androidx.paging:paging-compose:${Version.pagingCompose}"
+    }
 }

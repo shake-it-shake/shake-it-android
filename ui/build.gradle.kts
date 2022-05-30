@@ -79,4 +79,7 @@ dependencies {
     implementation(Dependency.Image.tedImagePicker)
     implementation(Dependency.Image.glide)
     kapt(Dependency.Image.glideCompiler)
+
+    implementation(Dependency.Paging.paging)
+    implementation(Dependency.Paging.pagingCompose)
 }

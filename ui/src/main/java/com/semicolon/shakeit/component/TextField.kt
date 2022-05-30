@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +26,8 @@ fun TextField(
     text: String,
     isSecret: Boolean = false,
     onTextChange: (String) -> Unit,
-    placeholder: String = ""
+    placeholder: String = "",
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
     BasicTextField(
         value = text,
@@ -39,6 +41,7 @@ fun TextField(
         textStyle = TextStyle(color = Color.White),
         singleLine = true,
         maxLines = 1,
+        keyboardOptions = keyboardOptions,
         cursorBrush = SolidColor(Color(0xFFFF6262)),
         visualTransformation = if(isSecret) PasswordVisualTransformation() else VisualTransformation.None,
         modifier = Modifier

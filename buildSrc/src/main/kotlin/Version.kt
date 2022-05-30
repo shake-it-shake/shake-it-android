@@ -29,4 +29,6 @@ object Version {
     const val semicolonDesign = "1.2.3"
     const val glide = "4.13.0"
     const val tedImagePicker = "1.2.8"
+    const val paging = "3.1.1"
+    const val pagingCompose = "1.0.0-alpha14"
 }

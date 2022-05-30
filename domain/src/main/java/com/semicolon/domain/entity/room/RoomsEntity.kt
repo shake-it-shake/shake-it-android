@@ -1,5 +1,7 @@
 package com.semicolon.domain.entity.room
 
+import org.threeten.bp.LocalDateTime
+
 data class RoomsEntity(
     val rooms: List<RoomEntity>
 ) {
@@ -9,6 +11,8 @@ data class RoomsEntity(
         val roomImage: String,
         val personnel: Int,
         val currentCount: Int,
+        val ownerName: String,
+        val createdAt: LocalDateTime,
         val member: List<MemberEntity>
     )
 
