@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.semicolon.shakeit.feature.clubs.ClubsScreen
 import com.semicolon.shakeit.feature.login.LoginScreen
 import com.semicolon.shakeit.feature.editprofile.EditProfileScreen
 import com.semicolon.shakeit.feature.profile.ProfileScreen
@@ -106,7 +107,7 @@ fun MainScaffold(
             startDestination = BottomNavigationScreen.Club.route
         ) {
             composable(BottomNavigationScreen.Club.route) {
-                // TODO 클럽 목록 화면으로 이동
+                ClubsScreen(mainNavController)
             }
             composable(BottomNavigationScreen.Friend.route) {
                 // TODO 친구 화면으로 이동
