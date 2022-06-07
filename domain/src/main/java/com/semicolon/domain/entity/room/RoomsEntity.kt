@@ -6,7 +6,7 @@ data class RoomsEntity(
     val rooms: List<RoomEntity>
 ) {
     data class RoomEntity(
-        val id: Long,
+        val id: String,
         val title: String,
         val roomImage: String,
         val personnel: Int,
