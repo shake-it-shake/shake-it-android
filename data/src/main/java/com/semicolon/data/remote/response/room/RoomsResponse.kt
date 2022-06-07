@@ -10,7 +10,7 @@ data class RoomsResponse(
     @SerializedName("rooms") val rooms: List<Room>
 ) {
     data class Room(
-        @SerializedName("id") val id: Long,
+        @SerializedName("id") val id: String,
         @SerializedName("title") val title: String,
         @SerializedName("room_image") val roomImage: String,
         @SerializedName("personnel") val personnel: Int,
