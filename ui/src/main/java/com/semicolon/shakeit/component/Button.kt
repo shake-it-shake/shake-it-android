@@ -11,6 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.semicolon.design.Button
 import com.semicolon.design.button.BasicButton
 import com.semicolon.design.button.BasicLargeButton
+import com.semicolon.design.button.BasicSmallButton
 import com.semicolon.design.color.primary.gray.gray800
 import com.semicolon.design.color.primary.gray.gray900
 
@@ -76,4 +77,25 @@ fun MediumDarkButton(
     ) {
         Button(text = text, color = textColor)
     }
+}
+
+@Composable
+fun SmallPrimaryButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    isEnabled: Boolean = true,
+    onClick: () -> Unit
+) {
+    BasicSmallButton(
+        text = text,
+        defaultColor = Color(0xFFFF6262),
+        pressedColor = Color(0xEEFF6262),
+        disabledColor = gray900,
+        defaultContentColor = Color.White,
+        disabledContentColor = gray800,
+        isEnabled = isEnabled,
+        isLoading = false,
+        modifier = modifier,
+        onClick = onClick
+    )
 }

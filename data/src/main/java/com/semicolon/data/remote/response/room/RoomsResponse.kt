@@ -17,7 +17,7 @@ data class RoomsResponse(
         @SerializedName("current_count") val currentCount: Int,
         @SerializedName("owner_name") val ownerName: String,
         @SerializedName("created_at") val createdAt: String,
-        @SerializedName("member") val member: List<Member>
+        @SerializedName("members") val member: List<Member>
     )
 
     data class Member(
