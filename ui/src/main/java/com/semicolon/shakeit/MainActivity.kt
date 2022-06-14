@@ -22,6 +22,7 @@ import androidx.navigation.compose.rememberNavController
 import com.semicolon.shakeit.feature.clubs.ClubsScreen
 import com.semicolon.shakeit.feature.login.LoginScreen
 import com.semicolon.shakeit.feature.editprofile.EditProfileScreen
+import com.semicolon.shakeit.feature.friends.FriendsScreen
 import com.semicolon.shakeit.feature.profile.ProfileScreen
 import com.semicolon.shakeit.feature.signup.SignUpScreen
 import com.semicolon.shakeit.feature.splash.SplashScreen
@@ -110,7 +111,7 @@ fun MainScaffold(
                 ClubsScreen(mainNavController)
             }
             composable(BottomNavigationScreen.Friend.route) {
-                // TODO 친구 화면으로 이동
+                FriendsScreen(mainNavController)
             }
             composable(BottomNavigationScreen.Profile.route) {
                 ProfileScreen(mainNavController)
