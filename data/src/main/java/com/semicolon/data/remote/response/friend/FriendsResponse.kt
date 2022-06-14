@@ -11,7 +11,7 @@ data class FriendsResponse(
         @SerializedName("user_id") val userId: String,
         @SerializedName("nickname") val nickname: String,
         @SerializedName("profile_path") val profilePath: String,
-        @SerializedName("room_id") val roomId: Long?
+        @SerializedName("room_id") val roomId: String?
     )
 }
 

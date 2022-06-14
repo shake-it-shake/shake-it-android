@@ -8,6 +8,6 @@ data class FriendsEntity(
         val userId: String,
         val nickname: String,
         val profilePath: String,
-        val roomId: Long?
+        val roomId: String?
     )
 }
