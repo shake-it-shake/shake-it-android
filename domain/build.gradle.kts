@@ -39,4 +39,6 @@ dependencies {
     implementation(Dependency.DI.inject)
 
     implementation(Dependency.Date.threeTenAbp)
+
+    implementation(Dependency.Chime.chimeSdk)
 }

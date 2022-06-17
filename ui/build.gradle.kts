@@ -82,4 +82,7 @@ dependencies {
 
     implementation(Dependency.Paging.paging)
     implementation(Dependency.Paging.pagingCompose)
+
+    implementation(Dependency.Chime.chimeSdk)
+    implementation(Dependency.Chime.chimeSdkMedia)
 }

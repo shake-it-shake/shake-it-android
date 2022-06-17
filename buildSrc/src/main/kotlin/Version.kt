@@ -31,4 +31,5 @@ object Version {
     const val tedImagePicker = "1.2.8"
     const val paging = "3.1.1"
     const val pagingCompose = "1.0.0-alpha14"
+    const val chime = "0.17.1"
 }

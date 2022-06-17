@@ -88,4 +88,9 @@ object Dependency {
         const val paging = "androidx.paging:paging-runtime:${Version.paging}"
         const val pagingCompose = "androidx.paging:paging-compose:${Version.pagingCompose}"
     }
+
+    object Chime {
+        const val chimeSdkMedia = "software.aws.chimesdk:amazon-chime-sdk-media:${Version.chime}"
+        const val chimeSdk = "software.aws.chimesdk:amazon-chime-sdk:${Version.chime}"
+    }
 }
