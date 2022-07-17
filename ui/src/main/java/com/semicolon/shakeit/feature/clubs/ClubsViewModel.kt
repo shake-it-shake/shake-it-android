@@ -16,8 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ClubsViewModel @Inject constructor(
-    private val clubPagingSource: ClubPagingSource,
-    private val createRoomUseCase: CreateRoomUseCase
+    private val clubPagingSource: ClubPagingSource
 ) : BaseViewModel<ClubsViewModel.Event>() {
 
     fun fetchRooms() = execute(
@@ -26,31 +25,10 @@ class ClubsViewModel @Inject constructor(
         onFailure = { emitEvent(Event.FetchRoom.Failure) },
     )
 
-    fun createRoom(image: File, title: String, personnel: Int) = execute(
-        job = { createRoomUseCase.execute(CreateRoomEntity(image, title, personnel)) },
-        onSuccess = { emitEvent(Event.CreateRoom.Success) },
-        onFailure = {
-            emitEvent(
-                when (it) {
-                    is BadRequestException -> Event.CreateRoom.BadRequest
-                    is ConflictException -> Event.CreateRoom.ConflictTitle
-                    else -> Event.CreateRoom.UnknownError
-                }
-            )
-        }
-    )
-
     sealed class Event {
         sealed class FetchRoom : Event() {
             data class Success(val rooms: Flow<PagingData<RoomsEntity.RoomEntity>>) : FetchRoom()
             object Failure : FetchRoom()
-        }
-
-        sealed class CreateRoom : Event() {
-            object Success : CreateRoom()
-            object BadRequest : CreateRoom()
-            object ConflictTitle : CreateRoom()
-            object UnknownError : CreateRoom()
         }
     }
 }

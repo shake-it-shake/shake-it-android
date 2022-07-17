@@ -19,6 +19,7 @@ import com.semicolon.domain.entity.friend.FriendRequestsEntity
 import com.semicolon.domain.entity.friend.FriendsEntity
 import com.semicolon.shakeit.component.CircularImage
 import com.semicolon.shakeit.component.SmallPrimaryButton
+import com.semicolon.shakeit.feature.clubs.startClubActivity
 import com.semicolon.shakeit.util.makeToast
 
 @Composable
@@ -32,7 +33,10 @@ fun FriendsScreen(mainNavController: NavController) {
         friendsViewModel.fetchFriends()
         friendsViewModel.eventFlow.collect {
             when (it) {
-                is FriendsViewModel.Event.AcceptFriend.Success -> friendsViewModel.fetchFriendRequests()
+                is FriendsViewModel.Event.AcceptFriend.Success -> {
+                    friendsViewModel.fetchFriendRequests()
+                    friendsViewModel.fetchFriends()
+                }
                 is FriendsViewModel.Event.AcceptFriend.Failure ->
                     makeToast(context, "잠시 후 다시 시도해주세요")
                 is FriendsViewModel.Event.DeleteFriend.Success -> friendsViewModel.fetchFriends()
@@ -51,7 +55,12 @@ fun FriendsScreen(mainNavController: NavController) {
         onAccept = { friendsViewModel.acceptFriend(it) },
         onDelete = { friendsViewModel.deleteFriend(it) },
         onFollow = {
-            // TODO(클럽 내부로 이동하는 코드)
+            if (it.roomId != null && it.roomTitle != null)
+                startClubActivity(
+                    context = context,
+                    roomId = it.roomId!!,
+                    roomTitle = it.roomTitle!!
+                )
         }
     )
 }
@@ -62,7 +71,7 @@ private fun Friends(
     friends: List<FriendsEntity.FriendEntity>,
     onAccept: (String) -> Unit,
     onDelete: (String) -> Unit,
-    onFollow: (String) -> Unit
+    onFollow: (FriendsEntity.FriendEntity) -> Unit
 ) {
     Column {
         if (requests.isNotEmpty()) {
@@ -89,7 +98,9 @@ private fun FriendRequestItem(
     onAccept: (String) -> Unit
 ) {
     Row(
-        Modifier.padding(horizontal = 16.dp),
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -108,10 +119,12 @@ private fun FriendRequestItem(
 private fun FriendItem(
     friend: FriendsEntity.FriendEntity,
     onDelete: (String) -> Unit,
-    onFollow: (String) -> Unit
+    onFollow: (FriendsEntity.FriendEntity) -> Unit
 ) {
     Row(
         Modifier
+            .fillMaxWidth()
+            .height(52.dp)
             .padding(horizontal = 16.dp)
             .pointerInput(Unit) {
                 detectTapGestures(onLongPress = { onDelete(friend.userId) })
@@ -124,8 +137,11 @@ private fun FriendItem(
             Spacer(Modifier.size(8.dp))
             Body3(text = friend.nickname, color = Color.White)
         }
-        SmallPrimaryButton(text = "따라가기", isEnabled = (friend.roomId != null)) {
-            friend.roomId?.let { onFollow(it) }
+        if (friend.roomId != null) SmallPrimaryButton(
+            text = "따라가기",
+            isEnabled = (friend.roomId != null)
+        ) {
+            onFollow(friend)
         }
     }
 }

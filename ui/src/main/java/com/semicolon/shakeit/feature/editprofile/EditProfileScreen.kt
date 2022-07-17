@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -32,7 +33,7 @@ fun EditProfileScreen(navController: NavController) {
     val editProfileViewModel: EditProfileViewModel = hiltViewModel()
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var curImage by remember { mutableStateOf<File?>(null) }
-    var curNickname by remember { mutableStateOf("") }
+    var curNickname by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(Unit) {
         editProfileViewModel.fetchMyProfile()
         editProfileViewModel.eventFlow.collect {
@@ -69,7 +70,7 @@ fun EditProfileScreen(navController: NavController) {
 private fun EditProfile(
     errorMessage: String?,
     curImage: File?,
-    curNickname: String,
+    curNickname: String?,
     onCancelClick: () -> Unit,
     onCompleteClick: (image: File, nickname: String) -> Unit
 ) {
@@ -77,10 +78,10 @@ private fun EditProfile(
     val context = LocalContext.current
     var nicknameTextField by remember { mutableStateOf(curNickname) }
     var profileImage by remember { mutableStateOf(curImage) }
-    val isEnabled = nicknameTextField.isNotEmpty()
+    val isEnabled = !nicknameTextField.isNullOrEmpty()
             && profileImage != null
             && (curNickname != nicknameTextField || curImage != profileImage)
-    if (nicknameTextField.isEmpty() && curNickname.isNotEmpty()) nicknameTextField = curNickname
+    if (nicknameTextField == null && curNickname != null) nicknameTextField = curNickname
     if (profileImage == null && curImage != null) profileImage = curImage
     Box(
         Modifier
@@ -134,7 +135,7 @@ private fun EditProfile(
                 }
                 Spacer(Modifier.size(24.dp))
                 TextField(
-                    text = nicknameTextField,
+                    text = nicknameTextField ?: "",
                     onTextChange = { nicknameTextField = it },
                     placeholder = "닉네임"
                 )
@@ -144,7 +145,19 @@ private fun EditProfile(
             text = "완료",
             isEnabled = isEnabled
         ) {
-            onCompleteClick(profileImage!!, nicknameTextField)
+            onCompleteClick(profileImage!!, nicknameTextField!!)
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun EditProfilePreview() {
+    EditProfile(
+        errorMessage = null,
+        curImage = null,
+        curNickname = "신희원",
+        onCancelClick = { },
+        onCompleteClick = { _, _ -> }
+    )
 }

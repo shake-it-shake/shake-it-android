@@ -17,7 +17,10 @@ class ProfileViewModel @Inject constructor(
     fun fetchMyProfile() = execute(
         job = { fetchMyProfileUseCase.execute() },
         onSuccess = { emitEvent(Event.MyProfile.Success(it.imagePath, it.nickname)) },
-        onFailure = { emitEvent(Event.MyProfile.Failure) }
+        onFailure = {
+            it.printStackTrace()
+            emitEvent(Event.MyProfile.Failure)
+        }
     )
 
     fun logout() = execute(

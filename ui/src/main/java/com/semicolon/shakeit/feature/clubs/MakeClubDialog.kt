@@ -34,14 +34,14 @@ fun MakeClubDialog(
     var maxPeople by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    val isEnabled = (profileImage != null) &&
-            (clubName.isNotEmpty()) &&
-            (maxPeople.isNotEmpty()) &&
-            (maxPeople.length <= 2) &&
-            (maxPeople.toInt() > 1) &&
-            (maxPeople.toInt() <= 12)
+    val isEnabled = (profileImage != null)
+            && (clubName.isNotEmpty())
+            && (maxPeople.isNotEmpty())
+            && (maxPeople.length <= 2)
+            && (maxPeople.toInt() > 1)
+            && (maxPeople.toInt() <= 12)
     Dialog(
-        onDismissRequest = {}
+        onDismissRequest = onDismiss
     ) {
         Column(
             Modifier
@@ -77,7 +77,7 @@ fun MakeClubDialog(
             TextField(
                 text = maxPeople,
                 onTextChange = { maxPeople = it },
-                placeholder = "클럽 이름",
+                placeholder = "최대 인원",
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
             Spacer(Modifier.size(16.dp))
