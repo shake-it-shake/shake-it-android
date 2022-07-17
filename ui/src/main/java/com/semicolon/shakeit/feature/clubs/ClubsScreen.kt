@@ -1,5 +1,7 @@
 package com.semicolon.shakeit.feature.clubs
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.PagingData
@@ -20,6 +21,11 @@ import com.semicolon.design.Subtitle4
 import com.semicolon.design.color.primary.white.white
 import com.semicolon.domain.entity.room.RoomsEntity
 import com.semicolon.shakeit.R
+import com.semicolon.shakeit.feature.club.ClubActivity
+import com.semicolon.shakeit.feature.club.ClubActivity.IntentKey.ROOM_ID
+import com.semicolon.shakeit.feature.club.ClubActivity.IntentKey.ROOM_IMAGE_PATH
+import com.semicolon.shakeit.feature.club.ClubActivity.IntentKey.ROOM_PERSONNEL
+import com.semicolon.shakeit.feature.club.ClubActivity.IntentKey.ROOM_TITLE
 import com.semicolon.shakeit.util.makeToast
 import kotlinx.coroutines.flow.Flow
 import java.io.File
@@ -36,17 +42,26 @@ fun ClubsScreen(mainNavController: NavController) {
                 is ClubsViewModel.Event.FetchRoom.Success -> clubs = it.rooms
                 is ClubsViewModel.Event.FetchRoom.Failure ->
                     makeToast(context, "잠시 후 다시 시도해주세요")
-                is ClubsViewModel.Event.CreateRoom.Success -> {}
-                is ClubsViewModel.Event.CreateRoom.BadRequest -> {}
-                is ClubsViewModel.Event.CreateRoom.ConflictTitle -> {}
-                is ClubsViewModel.Event.CreateRoom.UnknownError -> {}
             }
         }
     }
     Clubs(
         clubs = clubs,
-        onJoinClick = { TODO() },
-        onRoomCreateClick = { file, s, i -> clubsViewModel.createRoom(file, s, i) }
+        onJoinClick = {
+            startClubActivity(
+                context = context,
+                roomId = it.id,
+                roomTitle = it.title
+            )
+        },
+        onRoomCreateClick = { file, s, i ->
+            startClubActivity(
+                context = context,
+                roomImagePath = file.path,
+                roomTitle = s,
+                roomPersonnel = i
+            )
+        }
     )
 }
 
@@ -108,4 +123,26 @@ private fun Clubs(
             makeClubDialogState = false
         }
     )
+}
+
+fun startClubActivity(context: Context, roomId: String, roomTitle: String) {
+    val intent = Intent(context, ClubActivity::class.java).apply {
+        putExtra(ROOM_ID, roomId)
+        putExtra(ROOM_TITLE, roomTitle)
+    }
+    context.startActivity(intent)
+}
+
+fun startClubActivity(
+    context: Context,
+    roomImagePath: String,
+    roomTitle: String,
+    roomPersonnel: Int
+) {
+    val intent = Intent(context, ClubActivity::class.java).apply {
+        putExtra(ROOM_IMAGE_PATH, roomImagePath)
+        putExtra(ROOM_TITLE, roomTitle)
+        putExtra(ROOM_PERSONNEL, roomPersonnel)
+    }
+    context.startActivity(intent)
 }

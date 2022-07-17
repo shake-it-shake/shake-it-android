@@ -30,7 +30,10 @@ class FriendsViewModel @Inject constructor(
     fun deleteFriend(userId: String) = execute(
         job = { deleteFriendUseCase.execute(DeleteFriendEntity(userId)) },
         onSuccess = { emitEvent(Event.DeleteFriend.Success) },
-        onFailure = { emitEvent(Event.DeleteFriend.Failure) }
+        onFailure = {
+            it.printStackTrace()
+            emitEvent(Event.DeleteFriend.Failure)
+        }
     )
 
     fun fetchFriendRequests() = execute(

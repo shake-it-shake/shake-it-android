@@ -11,7 +11,8 @@ data class FriendsResponse(
         @SerializedName("user_id") val userId: String,
         @SerializedName("nickname") val nickname: String,
         @SerializedName("profile_path") val profilePath: String,
-        @SerializedName("room_id") val roomId: String?
+        @SerializedName("room_id") val roomId: String?,
+        @SerializedName("room_title") val roomTitle: String?
     )
 }
 
@@ -23,7 +24,8 @@ fun FriendsResponse.toEntity() =
                 userId = it.userId,
                 nickname = it.nickname,
                 profilePath = it.profilePath,
-                roomId = it.roomId
+                roomId = it.roomId,
+                roomTitle = it.roomTitle
             )
         }
     )

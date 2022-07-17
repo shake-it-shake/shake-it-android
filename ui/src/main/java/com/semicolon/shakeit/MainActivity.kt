@@ -59,9 +59,6 @@ fun ShakeIt() {
         composable(Screen.Main.route) {
             MainScaffold(navController)
         }
-        composable(Screen.Club.route) {
-            // TODO 클럽 화면으로 이동
-        }
     }
 }
 
@@ -130,8 +127,6 @@ sealed class Screen(val route: String) {
     object EditProfile : Screen("profile")
 
     object Main : Screen("main")
-
-    object Club : Screen("club")
 }
 
 sealed class BottomNavigationScreen(

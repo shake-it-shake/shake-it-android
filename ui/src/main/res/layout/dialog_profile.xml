@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/radius_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#212121"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp">
+
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_cancel"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:tint="@color/white" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_cancel"/>
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/iv_profile"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_friend_request"
+            android:layout_width="208dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:text="친구 요청"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_nickname"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/radius_medium"
+            android:backgroundTint="#FF6262"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

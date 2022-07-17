@@ -76,10 +76,17 @@ dependencies {
 
     implementation(Dependency.Date.threeTenAbp)
 
+    implementation(Dependency.Image.circularImageView)
     implementation(Dependency.Image.tedImagePicker)
     implementation(Dependency.Image.glide)
     kapt(Dependency.Image.glideCompiler)
 
     implementation(Dependency.Paging.paging)
     implementation(Dependency.Paging.pagingCompose)
+
+    implementation(Dependency.Chime.chimeSdk)
+    implementation(Dependency.Chime.chimeSdkMedia)
+
+    implementation(Dependency.Permission.TedPermission)
+
 }

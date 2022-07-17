@@ -4,5 +4,5 @@ data class ProfileEntity(
     val id: String,
     val nickname: String,
     val imagePath: String,
-    val roomId: Long?
+    val roomId: String?
 )

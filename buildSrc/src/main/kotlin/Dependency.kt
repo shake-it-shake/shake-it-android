@@ -82,10 +82,20 @@ object Dependency {
         const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Version.glide}"
         const val tedImagePicker = "io.github.ParkSangGwon:tedimagepicker:${Version.tedImagePicker}"
+        const val circularImageView = "de.hdodenhof:circleimageview:${Version.circularImageView}"
     }
 
     object Paging {
         const val paging = "androidx.paging:paging-runtime:${Version.paging}"
         const val pagingCompose = "androidx.paging:paging-compose:${Version.pagingCompose}"
+    }
+
+    object Chime {
+        const val chimeSdkMedia = "software.aws.chimesdk:amazon-chime-sdk-media:${Version.chime}"
+        const val chimeSdk = "software.aws.chimesdk:amazon-chime-sdk:${Version.chime}"
+    }
+
+    object Permission {
+        const val TedPermission = "io.github.ParkSangGwon:tedpermission-coroutine:${Version.tedPermission}"
     }
 }
