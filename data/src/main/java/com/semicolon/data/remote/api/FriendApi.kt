@@ -22,7 +22,7 @@ interface FriendApi {
     @GET("/friends")
     suspend fun fetchFriends(): FriendsResponse
 
-    @DELETE("/friends")
+    @HTTP(method = "DELETE", path = "/friends", hasBody = true)
     suspend fun deleteFriend(
         @Body deleteFriendRequest: DeleteFriendRequest
     )
